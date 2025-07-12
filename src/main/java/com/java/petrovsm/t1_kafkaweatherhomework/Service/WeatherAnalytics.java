@@ -1,11 +1,10 @@
-package Service;
+package com.java.petrovsm.t1_kafkaweatherhomework.Service;
 
-import Entity.WeatherCondition;
-import Entity.WeatherData;
+import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherCondition;
+import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;

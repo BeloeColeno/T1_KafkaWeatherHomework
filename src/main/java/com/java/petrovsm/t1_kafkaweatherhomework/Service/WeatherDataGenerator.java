@@ -1,7 +1,7 @@
-package Service;
+package com.java.petrovsm.t1_kafkaweatherhomework.Service;
 
-import Entity.WeatherCondition;
-import Entity.WeatherData;
+import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherCondition;
+import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherData;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

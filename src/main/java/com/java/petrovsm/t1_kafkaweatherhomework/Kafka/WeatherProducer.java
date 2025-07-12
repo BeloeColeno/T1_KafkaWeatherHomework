@@ -1,7 +1,7 @@
-package Kafka;
+package com.java.petrovsm.t1_kafkaweatherhomework.Kafka;
 
-import Entity.WeatherData;
-import Service.WeatherDataGenerator;
+import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherData;
+import com.java.petrovsm.t1_kafkaweatherhomework.Service.WeatherDataGenerator;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

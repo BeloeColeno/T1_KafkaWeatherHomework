@@ -1,4 +1,4 @@
-package Entity;
+package com.java.petrovsm.t1_kafkaweatherhomework.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
