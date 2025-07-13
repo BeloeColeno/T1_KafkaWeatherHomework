@@ -1,0 +1,66 @@
+# List Of Cities
+weather:
+  cities: Москва,Санкт-Петербург,Новосибирск,Екатеринбург,Нижний Новгород,Казань,Челябинск,Омск,Самара,Ростов-на-Дону
+
+spring:
+  application:
+    name: T1_KafkaWeatherHomework
+
+# Disable Spring Boot Banner
+  main:
+    banner-mode: off
+
+  # Kafka Configuration
+  ##Kafka forced localhost use (если приложение поднимается не в Docker)
+  kafka:
+    bootstrap-servers: localhost:9092
+    properties:
+      client:
+        dns:
+          lookup: use_all_dns_ips #Kafka forced localhost use
+    # Producer Configuration
+    producer:
+      bootstrap-servers: localhost:9092 #Kafka forced localhost use
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    # Consumer Configuration
+    consumer:
+      bootstrap-servers: localhost:9092 #Kafka forced localhost use
+      group-id: weather-analytics-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+
+# Logging Configuration
+logging:
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %logger{36} : %msg%n"
+  level:
+    org:
+      apache:
+        kafka: ERROR
+        kafka.clients:
+          NetworkClient: "OFF"
+          consumer: ERROR
+          producer: ERROR
+      springframework:
+        kafka: ERROR
+        scheduling: WARN
+    com:
+      java:
+        pet:
+          t1: INFO
+    root: INFO
+  # Console Charset Configuration
+  charset:
+    console: UTF-8
+
+# Application Properties
+app:
+  kafka:
+    topic: weather-topic
