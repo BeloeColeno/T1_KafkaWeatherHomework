@@ -2,7 +2,6 @@ package com.java.petrovsm.t1_kafkaweatherhomework.Kafka;
 
 import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherData;
 import com.java.petrovsm.t1_kafkaweatherhomework.Service.WeatherAnalytics;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -17,11 +16,6 @@ public class WeatherConsumer {
 
     private final WeatherAnalytics weatherAnalytics;
     private int messageCount = 0;
-
-    @PostConstruct
-    public void init() {
-        log.info("WeatherConsumer инициализирован");
-    }
 
     @KafkaListener(topics = "${app.kafka.topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(WeatherData weatherData) {
