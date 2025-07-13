@@ -2,6 +2,7 @@ package com.java.petrovsm.t1_kafkaweatherhomework.Service;
 
 import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherCondition;
 import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherData;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,10 +12,12 @@ import java.util.Random;
 
 @Service
 public class WeatherDataGenerator {
-    private static final List<String> CITIES = List.of(
-            "Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Нижний Новгород",
-            "Казань", "Челябинск", "Омск", "Самара", "Ростов-на-Дону"
-    );
+    private final List<String> CITIES;
+
+    public WeatherDataGenerator(@Value("${weather.cities}") String CITIES) {
+        this.CITIES = Arrays.asList(CITIES.split(","));
+    }
+
     private static final List<WeatherCondition> CONDITIONS = Arrays.asList(
             WeatherCondition.SUNNY,
             WeatherCondition.CLOUDY,
