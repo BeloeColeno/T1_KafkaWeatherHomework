@@ -16,7 +16,7 @@ public class WeatherAnalytics {
 
     public void addWeatherData(WeatherData data) {
         weatherDataList.add(data);
-        log.info("Добавлены данные о погоде: {}", data);
+        log.info("К аналитике добавлены данные о погоде");
     }
 
     public String getMostRainyCity() {
