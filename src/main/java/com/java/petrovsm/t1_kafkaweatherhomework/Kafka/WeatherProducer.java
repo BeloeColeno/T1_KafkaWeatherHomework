@@ -2,7 +2,6 @@ package com.java.petrovsm.t1_kafkaweatherhomework.Kafka;
 
 import com.java.petrovsm.t1_kafkaweatherhomework.Entity.WeatherData;
 import com.java.petrovsm.t1_kafkaweatherhomework.Service.WeatherDataGenerator;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,21 +20,20 @@ public class WeatherProducer {
     @Value("${app.kafka.topic}")
     String topic;
 
-    @PostConstruct
-    public void init() {
-        log.info("WeatherProducer инициализирован");
-    }
-
     @Scheduled(fixedRate = 2000)
     public void sendWeatherData() {
         WeatherData weatherData = weatherDataGenerator.generateWeatherData();
 
-        log.info("Отправляю данные о погоде: {}", weatherData);
+        log.info("""
+                Отправляю данные о погоде:\s
+                -----------------------------
+                {}
+                -----------------------------""", weatherData);
 
         kafkaTemplate.send(topic, weatherData.getCity(), weatherData)
                 .whenComplete((result, ex) -> {
                     if (ex == null) {
-                        log.info("Успешно отправлено сообщение: {}", weatherData);
+                        log.info("Сообщение успешно отправлено");
                     } else {
                         log.error("Ошибка при отправке сообщения: {}", ex.getMessage());
                     }
